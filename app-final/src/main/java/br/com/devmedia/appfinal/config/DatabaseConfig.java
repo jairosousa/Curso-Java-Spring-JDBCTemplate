@@ -27,7 +27,7 @@ public class DatabaseConfig {
 
 	@Value("${datasource.driver-class-name}")
 	private String driver;
-	
+
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertySource() {
 		return new PropertySourcesPlaceholderConfigurer();
@@ -38,13 +38,13 @@ public class DatabaseConfig {
 		BasicDataSource ds = new BasicDataSource();
 		ds.setUsername(username);
 		ds.setPassword(password);
-		ds.setUrl(url); 
+		ds.setUrl(url);
 		ds.setDriverClassName(driver);
 		return ds;
 	}
 
 	@Bean
-	private JdbcTemplate jdbcTemplate() {
+	public JdbcTemplate jdbcTemplate() {
 		return new JdbcTemplate(dataSource());
 	}
 
