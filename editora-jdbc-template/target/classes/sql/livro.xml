@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>SQL TABELA LIVROS</comment>
+	
+	<entry key="sql.livro.findByTituloAndEdicao">
+		SELECT * FROM LIVROS
+		WHERE TITULO LIKE :titulo AND EDICAO = :edicao
+	</entry>
+	
+	<entry key="sql.livro.update">
+		UPDATE
+			LIVROS
+		SET
+			TITULO = :titulo, EDICAO = :edicao, PAGINAS = :paginas
+		WHERE
+			ID_LIVRO = :id
+	</entry>
+	
+	<entry key="sql.livro.findByPaginas">
+		SELECT * FROM LIVROS WHERE PAGINAS BETWEEN :minimo AND :maximo
+	</entry>
+	
+	<entry key="sql.livro.findByEdicao">
+		SELECT * FROM LIVROS WHERE EDICAO = :edicao
+	</entry>
+
+	<entry key="sql.livro.findLivroWithAutores">
+		SELECT
+			L.ID_LIVRO, L.TITULO, L.EDICAO, L.PAGINAS,
+			A.ID_AUTOR, A.NOME, A.EMAIL AS AUTOR_EMAIL,
+			E.ID_EDITORA, E.RAZAO_SOCIAL, E.CIDADE, E.EMAIL
+		FROM
+			LIVROS L, AUTORES A, EDITORAS E, LIVROS_AUTORES LA
+		WHERE
+			L.ID_LIVRO = LA.ID_LIVRO
+		AND
+			LA.ID_AUTOR = A.ID_AUTOR
+		AND
+			A.ID_EDITORA = E.ID_EDITORA
+		AND
+			L.ID_LIVRO = ?
+	</entry>
+
+	
+</properties>

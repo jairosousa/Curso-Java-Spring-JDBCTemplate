@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>SQL TABELA EDITORAS</comment>
+	
+	<entry key="sql.findEditoraWithAutores">
+		SELECT
+			E.ID_EDITORA, E.RAZAO_SOCIAL, E.CIDADE, E.EMAIL,
+			A.ID_AUTOR, A.NOME, A.EMAIL AS AUTOR_EMAIL, A.ID_EDITORA AS AUTOR_ID_EDITORA
+		FROM
+			EDITORAS E, AUTORES A
+		WHERE
+			E.ID_EDITORA = A.ID_EDITORA
+		AND
+			E.ID_EDITORA = ?
+			LIMIT ?, ?
+		
+	</entry>
+	
+	<entry key="sql.insert">
+		INSERT INTO 
+			EDITORAS (RAZAO_SOCIAL, CIDADE, EMAIL) 
+		VALUES (?,?,?)
+	</entry>
+	
+	<entry key="sql.findBy.razaosocial">
+		SELECT * FROM EDITORAS WHERE RAZAO_SOCIAL LIKE '%' ? '%'
+	</entry>
+	
+	<entry key="sql.findBy.cidades">
+		SELECT * FROM EDITORAS WHERE CIDADE LIKE ? OR CIDADE LIKE ?
+	</entry>
+	
+	<entry key="sql.findBy.id">
+		SELECT * FROM EDITORAS WHERE ID_EDITORA = ?
+	</entry>
+	
+	<entry key="sql.findAll">
+		SELECT * FROM EDITORAS
+	</entry>
+	
+	<entry key="sql.count">
+		SELECT COUNT(*) FROM EDITORAS
+	</entry>
+	
+	<entry key="sql.findEmailBy.id">
+		SELECT EMAIL FROM EDITORAS WHERE ID_EDITORA = ?
+	</entry>
+	
+	<entry key="sql.findEmails">
+		SELECT EMAIL FROM EDITORAS
+	</entry>
+	
+	<entry key="sql.findCidadeAndEmailBy.id">
+		SELECT CIDADE, EMAIL FROM EDITORAS WHERE ID_EDITORA = ?
+	</entry>
+	
+	<entry key="sql.findCidadesAndEmails">
+		SELECT CIDADE, EMAIL FROM EDITORAS
+	</entry>
+	
+	<entry key="sql.update">
+		UPDATE EDITORAS
+		SET RAZAO_SOCIAL = ?, CIDADE = ?, EMAIL = ?
+		WHERE ID_EDITORA = ?
+	</entry>
+	
+	<entry key="sql.delete">
+		DELETE FROM EDITORAS
+		WHERE ID_EDITORA = ?
+	</entry>
+	
+</properties>

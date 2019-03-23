@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>SQL TABELA AUTORES</comment>
+
+	<entry key="sql.insert">
+		INSERT INTO
+		AUTORES (RAZAO_SOCIAL, CIDADE, EMAIL)
+		VALUES (?,?,?)
+	</entry>
+
+	<entry key="sql.autor.findAutoresBy.editora">
+		SELECT 
+			A.ID_AUTOR, A.NOME, A.EMAIL, A.ID_EDITORA,
+			E.ID_EDITORA AS ED_ID_EDITORA, E.RAZAO_SOCIAL, E.CIDADE, E.EMAIL AS ED_EMAIL
+		FROM
+			AUTORES A, EDITORAS E
+		WHERE
+			A.ID_EDITORA = E.ID_EDITORA
+		AND
+			E.RAZAO_SOCIAL LIKE ?
+	</entry>
+	
+	<entry key="sql.autor.findAll">
+		SELECT * FROM AUTORES
+	</entry>
+	
+	<entry key="sql.autor.update">
+		UPDATE 
+			AUTORES
+		SET 
+			NOME = ?, EMAIL = ?, ID_EDITORA = ?
+		WHERE ID_AUTOR = ?
+	</entry>
+	
+	<entry key="sql.autor.findBy.id">
+		SELECT * FROM AUTORES WHERE ID_AUTOR = ?
+	</entry>
+	
+	<entry key="sql.autor.delete">
+		DELETE FROM AUTORES
+		WHERE ID_AUTOR = ?
+	</entry>
+	
+	<entry key="sql.autor.getIdByNome">
+		SELECT ID_AUTOR FROM AUTORES WHERE NOME LIKE ?
+	</entry>
+	
+	<entry key="sql.autor.findAutorWithLivros">
+		SELECT
+			A.ID_AUTOR, A.NOME, A.EMAIL,
+			E.ID_EDITORA, E.RAZAO_SOCIAL, E.CIDADE, E.EMAIL AS ED_EMAIL,
+			L.ID_LIVRO, L.TITULO, L.EDICAO, L.PAGINAS
+		FROM
+			AUTORES A, EDITORAS E, LIVROS L, LIVROS_AUTORES LA
+		WHERE
+			L.ID_LIVRO = LA.ID_LIVRO
+		AND
+			LA.ID_AUTOR = A.ID_AUTOR
+		AND
+			A.ID_EDITORA = E.ID_EDITORA
+		AND 
+			A.ID_AUTOR = ?
+			
+	</entry>
+
+</properties>
