@@ -42,7 +42,7 @@ public class AppEditora implements CommandLineRunner {
 
 	@Autowired
 	private LivroAutorDao livroAutorDao;
-	
+
 	@Autowired
 	private EnderecoDao enderecoDao;
 
@@ -73,22 +73,21 @@ public class AppEditora implements CommandLineRunner {
 //		findEditoraWithAutores();
 //		insertLivro();
 //		findLivroWithAutores();
-//		findAutorWithLivros();
+		findAutorWithLivros();
 //		findLivrosByEdicao();
 //		findLivroByPaginas();
 //		updateLivro();
 //		findLivroByTituloAndEdicao();
 //		procedureUpperCase();
-		
+
 //		procedureInfo();
 //		functionAutorLivro();
 //		insertBatchEditoras();
-		
+
 //		updateBathAutores();
 //		deleteBatchAutores();
 //		findAllEnderecos();
-		
-		
+
 		System.out.println("---------------------------------------------");
 	}
 
@@ -98,8 +97,8 @@ public class AppEditora implements CommandLineRunner {
 	}
 
 	private void deleteBatchAutores() {
-		
-		autorDao.deleteBath(Arrays.asList(7,8,9));
+
+		autorDao.deleteBath(Arrays.asList(7, 8, 9));
 	}
 
 	private void updateBathAutores() {
@@ -109,11 +108,11 @@ public class AppEditora implements CommandLineRunner {
 		a2.setEmail("carlaPires@email.com");
 		Autor a3 = autorDao.findById(7);
 		a3.setEmail("manoelSantos@email.com");
-		
-		autorDao.updateBath(Arrays.asList(a1,a2,a3));
-		
+
+		autorDao.updateBath(Arrays.asList(a1, a2, a3));
+
 		findAllAutores();
-		
+
 	}
 
 	private void insertBatchEditoras() {
@@ -122,45 +121,45 @@ public class AppEditora implements CommandLineRunner {
 		editoras.add(new Editora("Editora Leão", "Belém", "ed-leao@edLeao.com.br"));
 		editoras.add(new Editora("Editora Pé Redondo", "Belém", "pe-redondo@edPeRedondo.com.br"));
 		editoras.add(new Editora("Editora Maguari", "Ananindeua", "ed-maguari@edMaguari.com.br"));
-		
+
 		editoraDao.saveBatch(editoras);
-		
+
 		findAllEditoras();
-		
+
 		System.out.println("-------Segundo insert--------------------------");
 		editoras = new ArrayList<>();
 		editoras.add(new Editora("Editora Modelo", "Castanhal", "ed-modelo@edModelo.com.br"));
 		editoras.add(new Editora("Editora Barcarena", "Barcarena", "ed-barcarena@edBarcarena.com.br"));
 		editoras.add(new Editora("Editora Munguba", "Monte Dourado", "ed-munguna@edMunguba.com.br"));
-		
+
 		editoraDao.insertBatch(editoras);
-		
+
 		findAllEditoras();
-		
+
 	}
 
 	private void functionAutorLivro() {
 		String texto = livroDao.callFunctionTotalLivrosByAutor(4);
 		System.out.println(texto);
-		
+
 	}
 
 	private void procedureInfo() {
 		List<String> retorno = livroDao.callProcedureInfoLivro(8);
-		
+
 		System.out.println(retorno.toString());
 	}
 
 	private void procedureUpperCase() {
 		Map<String, Object> map = livroDao.callProcedureUpperCaseTitulo(3);
-		
-		for(Map.Entry<String, Object> kv : map.entrySet()) {
+
+		for (Map.Entry<String, Object> kv : map.entrySet()) {
 			System.out.println(kv.getKey() + "\n" + kv.getValue());
 		}
 	}
 
 	private void findLivroByTituloAndEdicao() {
-		
+
 		Livro livro = livroDao.findByTituloAndEdicao("Aprenda JEE em 60 dias", 1);
 		System.out.println("LIVRO: " + livro.toString());
 	}
@@ -168,22 +167,22 @@ public class AppEditora implements CommandLineRunner {
 	private void updateLivro() {
 		Livro livro = livroDao.findLivroWithComAutores(3);
 		System.out.println("ORIGINAL: " + livro.toString());
-		
+
 		livro.setTitulo("Aprenda JEE em 60 dias");
 //		livro.setPaginas(182);
 //		livro.setEdicao(1);
-		
+
 //		int OK = livroDao.update(livro);
 		int OK = livroDao.alter(livro);
-		
+
 		if (OK == 1) {
 			livro = livroDao.findLivroWithComAutores(3);
 		} else {
 			System.out.println("Operação não realizada");
 		}
-		
-		System.out.println("UPDATE: "+livro.toString());
-		
+
+		System.out.println("UPDATE: " + livro.toString());
+
 	}
 
 	private void findLivroByPaginas() {
@@ -193,56 +192,55 @@ public class AppEditora implements CommandLineRunner {
 
 	private void findLivrosByEdicao() {
 		List<Livro> livros = livroDao.findByEdicao(2);
-		
+
 		livros.forEach(System.out::println);
-		
+
 	}
 
 	private void findAutorWithLivros() {
 		Autor autor = autorDao.findAutorWithLivros(1);
-		
+
 		System.out.println(autor.toString());
-		
-		for (Livro livro: autor.getLivros()) {
+
+		for (Livro livro : autor.getLivros()) {
 			System.out.println(livro.toString());
 		}
-		
+
 	}
 
 	private void findLivroWithAutores() {
-		Livro livro = livroDao.findLivroWithComAutores(1);
-		
+		Livro livro = livroDao.findLivroWithComAutores(9);
+
 		System.out.println(livro.toString());
-		
+
 		for (Autor autor : livro.getAutores()) {
 			System.out.println(autor.toString());
 		}
-		
+
 	}
 
 	private void insertLivro() {
-		String titulo = "Spring Boot descomplicado";
-		int edicao = 3;
-		int paginas = 452;
-		
-		String[] autores = {"Jairo Nascimento"};
-		
+		String titulo = "Tudo sobre Jogos on line";
+		int edicao = 2;
+		int paginas = 105;
+
+		String[] autores = { "Caio Sousa"};
+
 		Livro livro = new Livro();
 		livro.setTitulo(titulo);
 		livro.setEdicao(edicao);
 		livro.setPaginas(paginas);
-		
+
 		livro = livroDao.save(livro);
-		
+
 		Integer idLivro = livro.getId();
-		
+
 		for (String nome : autores) {
 			Integer idAutor = autorDao.getIdByNome(nome);
 			livroAutorDao.save(new LivroAutor(idLivro, idAutor));
 			System.out.println("Livro inserido com sucesso");
 		}
-		
-		
+
 	}
 
 	private void findEditoraWithAutores() {
@@ -320,11 +318,11 @@ public class AppEditora implements CommandLineRunner {
 	}
 
 	private void insertAutor() {
-		Editora editora = editoraDao.findById(17);
+		Editora editora = editoraDao.findById(15);
 		System.out.println(editora);
 		Autor autor = new Autor();
-		autor.setNome("Samara Castro Luz");
-		autor.setEmail("sama@email.com.br");
+		autor.setNome("Santorio Mendes Castro");
+		autor.setEmail("smc@email.com.br");
 		autor.setEditora(editora);
 
 		if (StringUtils.isEmpty(autor.getId())) {
@@ -366,19 +364,21 @@ public class AppEditora implements CommandLineRunner {
 	}
 
 	private void findCidadeAndEmailByIdEditora() {
-//		List<String> lista = dao.findCidadeAndEmailById(1);
-//		lista.forEach(System.out::println);
-
-		Editora editora = editoraDao.findCidadeAndEmailForId(2);
+		List<String> lista = editoraDao.findCidadeAndEmailById(11);
+		lista.forEach(System.out::println);
+		System.out.println("----------------");
+		
+		Editora editora = editoraDao.findCidadeAndEmailForId(11);
 		System.out.println(editora.toString());
-
+		System.out.println("----------------");
+		
 		List<Editora> editoras = editoraDao.findCidadesAndEmails();
 		editoras.forEach(System.out::println);
 	}
 
 	private void findEmailByIdEditora() {
-//		String email = dao.findEmailById(2);
-//		System.out.println("Email: " + email);
+		String email = editoraDao.findEmailById(11);
+		System.out.println("Email: " + email);
 
 		List<String> emails = editoraDao.findByEmails();
 		emails.forEach(System.out::println);
@@ -392,7 +392,7 @@ public class AppEditora implements CommandLineRunner {
 	}
 
 	private void findByRazaoSocial() {
-		List<Editora> editoras = editoraDao.findByRazaoSocial("Cab");
+		List<Editora> editoras = editoraDao.findByRazaoSocial("Ico");
 		editoras.forEach(System.out::println);
 	}
 
@@ -404,7 +404,7 @@ public class AppEditora implements CommandLineRunner {
 	}
 
 	private void findById() {
-		Editora editora = editoraDao.findById(2);
+		Editora editora = editoraDao.findById(11);
 		System.out.println(editora.toString());
 
 	}
@@ -418,9 +418,9 @@ public class AppEditora implements CommandLineRunner {
 
 	private void insertEditora() {
 		Editora editora = new Editora();
-		editora.setRazaoSocial("Editora Icoaraci S/A");
-		editora.setCidade("Belém");
-		editora.setEmail("contato@edIcoaraci.com.br");
+		editora.setRazaoSocial("Editora Águia S/A");
+		editora.setCidade("Marabá");
+		editora.setEmail("contato@aguia.com.br");
 
 		int ok = editoraDao.insert(editora);
 		System.out.println("OK = " + ok);
