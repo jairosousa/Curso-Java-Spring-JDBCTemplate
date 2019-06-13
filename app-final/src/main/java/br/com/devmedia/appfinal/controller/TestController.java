@@ -21,6 +21,7 @@ public class TestController {
 		try {
 			DatabaseMetaData data = jdbcTemplate.getDataSource().getConnection().getMetaData();
 			valor = "URL: " + data.getURL();
+			System.out.println("VALOR: " + valor);
 		} catch (SQLException e) {
 			valor = e.getMessage();
 		}
