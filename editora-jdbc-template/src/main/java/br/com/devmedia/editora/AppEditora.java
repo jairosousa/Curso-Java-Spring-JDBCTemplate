@@ -73,7 +73,7 @@ public class AppEditora implements CommandLineRunner {
 //		findEditoraWithAutores();
 //		insertLivro();
 //		findLivroWithAutores();
-		findAutorWithLivros();
+//		findAutorWithLivros();
 //		findLivrosByEdicao();
 //		findLivroByPaginas();
 //		updateLivro();
@@ -145,7 +145,7 @@ public class AppEditora implements CommandLineRunner {
 	}
 
 	private void procedureInfo() {
-		List<String> retorno = livroDao.callProcedureInfoLivro(8);
+		List<String> retorno = livroDao.callProcedureInfoLivro(2);
 
 		System.out.println(retorno.toString());
 	}
@@ -160,23 +160,23 @@ public class AppEditora implements CommandLineRunner {
 
 	private void findLivroByTituloAndEdicao() {
 
-		Livro livro = livroDao.findByTituloAndEdicao("Aprenda JEE em 60 dias", 1);
+		Livro livro = livroDao.findByTituloAndEdicao("Tudo sobre Jogos on line", 2);
 		System.out.println("LIVRO: " + livro.toString());
 	}
 
 	private void updateLivro() {
-		Livro livro = livroDao.findLivroWithComAutores(3);
+		Livro livro = livroDao.findLivroWithComAutores(1);
 		System.out.println("ORIGINAL: " + livro.toString());
 
-		livro.setTitulo("Aprenda JEE em 60 dias");
-//		livro.setPaginas(182);
-//		livro.setEdicao(1);
+		livro.setTitulo("Aprenda Java Jackarta em 60 dias");
+		livro.setPaginas(195);
+		livro.setEdicao(1);
 
 //		int OK = livroDao.update(livro);
 		int OK = livroDao.alter(livro);
 
 		if (OK == 1) {
-			livro = livroDao.findLivroWithComAutores(3);
+			livro = livroDao.findLivroWithComAutores(1);
 		} else {
 			System.out.println("Operação não realizada");
 		}
