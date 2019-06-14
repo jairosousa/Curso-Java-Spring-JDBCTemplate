@@ -1,8 +1,7 @@
 package br.com.devmedia.appfinal.entity;
 
 public class Cargo {
-<<<<<<< HEAD
-
+	
 	private Integer idCargo;
 
 	private String cargo;
@@ -37,13 +36,5 @@ public class Cargo {
 	public String toString() {
 		return "Cargo [idCargo=" + idCargo + ", cargo=" + cargo + ", departamento=" + departamento + "]";
 	}
-=======
-	
-	private Integer idCargo;
-	
-	private String cargo;
-	
-	private Departamento departamento;
->>>>>>> branch 'master' of https://github.com/jairosousa/Curso-Java-Spring-JDBCTemplate.git
 
 }
