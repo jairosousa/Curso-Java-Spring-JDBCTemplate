@@ -57,7 +57,7 @@ public class Autor {
 
 	@Override
 	public String toString() {
-		return "Autor [id=" + id + ", nome=" + nome + ", email=" + email + ", editora=" + editora.toString() + "]";
+		return "Autor [id=" + id + ", nome=" + nome + ", email=" + email + "]";
 	}
 
 }
