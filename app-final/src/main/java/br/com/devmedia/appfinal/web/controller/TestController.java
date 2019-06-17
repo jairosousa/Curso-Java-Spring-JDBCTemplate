@@ -1,4 +1,4 @@
-package br.com.devmedia.appfinal.controller;
+package br.com.devmedia.appfinal.web.controller;
 
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
