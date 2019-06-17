@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>Hello World! - Jairo Nascimento</h2>
+<h2>Hello World!</h2>
 </body>
 </html>

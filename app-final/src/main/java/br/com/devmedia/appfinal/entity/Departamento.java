@@ -6,8 +6,6 @@ public class Departamento {
 
 	private String departamento;
 
-	
-
 	public Integer getIdDepartamento() {
 		return idDepartamento;
 	}
