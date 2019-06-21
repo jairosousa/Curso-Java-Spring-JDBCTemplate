@@ -30,7 +30,7 @@ public class DepartamentoDao extends GenericDao<Departamento> {
 	protected RowMapper<Departamento> rowMapper() {
 		return new BeanPropertyRowMapper<Departamento>(Departamento.class);
 	}
-	
+
 	public Departamento save(Departamento departamento) {
 		Number key = save("DEPARTAMENTOS", "ID_DEPARTAMENTOS", parameterSource(departamento));
 		departamento.setIdDepartamento(key.intValue());
@@ -42,21 +42,20 @@ public class DepartamentoDao extends GenericDao<Departamento> {
 				+ "WHERE id_departamento = :idDepartamento";
 		return update(sql, parameterSource(departamento));
 	}
-	
+
 	public int delete(Integer id) {
 		String sql = "DELETE FROM departamentos WHERE id_departamento = ?";
 		return delete(sql, id);
 	}
-	
+
 	public Departamento findById(Integer id) {
 		String sql = "SELECT * FROM departamentos WHERE id_departamento = ?";
 		return findById(sql, id, rowMapper());
 	}
-	
+
 	public List<Departamento> findAll() {
 		String sql = "SELECT * FROM departamentos";
 		return findAll(sql, rowMapper());
 	}
-
 
 }
