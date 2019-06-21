@@ -18,12 +18,12 @@ import br.com.devmedia.appfinal.entity.Departamento;
 @Repository
 public class CargoDao extends GenericDao<Cargo> {
 
-	@Autowired
 	private DepartamentoDao departamentoDao;
 
 	@Autowired
-	public CargoDao(DataSource dataSource) {
+	public CargoDao(DataSource dataSource, DepartamentoDao departamentoDao) {
 		super(dataSource, Cargo.class);
+		this.departamentoDao = departamentoDao;
 	}
 
 	@Override
